@@ -1,6 +1,6 @@
 {
     "name": "webgl-ripplies.js",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "description": "Add a water ripple effect to background images using WebGL.",
     "keywords": [
         "webgl",

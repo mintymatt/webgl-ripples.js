@@ -16,13 +16,13 @@ Include the script at the end of your page, or when you are using bundling tools
 The quickest way to use this plugin on an element is to ensure that the element has a `background-image` set (currently only URLs are supported), then initialize the plugin as follows:
 
 ```js
-var ripplies = new Ripples(document.querySelector(selector));
+var ripples = new Ripples(document.querySelector(selector));
 ```
 
 Optionally you can tweak the behavior and appearance by initializing it with options (See the [options secton](#options) for the full list of options):
 
 ```js
-var ripplies = new Ripples(document.querySelector(selector), {
+var ripples = new Ripples(document.querySelector(selector), {
   dropRadius: ...,
   perturbance: ...,
   ...

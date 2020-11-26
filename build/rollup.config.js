@@ -3,18 +3,17 @@ import license from 'rollup-plugin-license'
 
 const version = require('../package.json').version
 const banner =
-`jQuery Ripples plugin v${version} / https://github.com/sirxemic/jquery.ripples
+`WebGLRipples.js  v${version} / https://github.com/mintymatt/webgl-ripples.js
 MIT License
-@author sirxemic / https://sirxemic.com/`
+@author mintymatt / https://github.com/mintymatt`
 
 export default {
-  entry: path.join(__dirname, '../src/main.js'),
-  dest: path.join(__dirname, '../dist/jquery.ripples.js'),
-  format: 'umd',
-  plugins: [
-    license({
-      banner
-    })
-  ],
-  external: [ 'jquery' ]
+    entry: path.join(__dirname, '../src/main.js'),
+    dest: path.join(__dirname, '../dist/webgl-ripples.js'),
+    format: 'umd',
+    plugins: [
+        license({
+            banner
+        })
+    ]
 }

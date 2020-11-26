@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>jQuery WebGL Ripples</title>
+<title>WebGL Ripples</title>
 <style>
 * { margin: 0; padding: 0; }
 html {
@@ -101,29 +101,31 @@ code { font-size: 0.8em; display: inline; }
 
 <main>
 	<header>
-		<h1>jQuery Ripples</h1>
+		<h1>Ripples</h1>
 		<h2>A simple WebGL-based ripple effect.</h2>
 	</header>
 	<p>Background images are often boring. Use this effect to make your static CSS background images more interactive!</p>
 	<p>It's as easy as:</p>
 
 	<pre><code>
-$(<span class="code-string">'body'</span>).ripples(<span class="code-cbracket">{</span>
+var mainRipples = new Ripples(<span class="code-string">'main'</span>, <span class="code-cbracket">{</span>
 	resolution: <span class="code-number">512</span>,
 	dropRadius: <span class="code-number">20</span>,
 	perturbance: <span class="code-number">0.04</span>,
 <span class="code-cbracket">}</span>);
 	</code></pre>
 
-	<p>You can add drops programmatically by doing <code>$(<span class="code-string">'body'</span>).ripples(<span class="code-string">"drop"</span>, x, y, radius, strength)</code></p>
+	<p>You can add drops programmatically by doing
+		<br>
+		<code>mainRipples(<span class="code-string">"drop"</span>, x, y, radius, strength)</code></p>
 
 	<p>And you can change its state:<br>
 	<button class="js-ripples-pause" type="button">
-		<code>$(<span class="code-string">'body'</span>).ripples(<span class="code-string">"pause"</span>)</code>
+		<code>mainRipples.<span class="code-string">pause()</span></code>
 	</button>
 
 	<button class="js-ripples-play" type="button">
-		<code>$(<span class="code-string">'body'</span>).ripples(<span class="code-string">"play"</span>)</code>
+		<code>mainRipples.<span class="code-string">play()</span></code>
 	</button>
 	</p>
 
@@ -137,17 +139,12 @@ $(<span class="code-string">'body'</span>).ripples(<span class="code-cbracket">{
 
 <div class="error"></div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-<script src="../dist/jquery.ripples.js"></script>
+<script src="../dist/webgl-ripples.js"></script>
 <script>
-$(document).ready(function() {
+	window.mainRipples = null;
+
 	try {
-		$('body').ripples({
-			resolution: 512,
-			dropRadius: 20, //px
-			perturbance: 0.04,
-		});
-		$('main').ripples({
+		window.mainRipples = new Ripples('main', {
 			resolution: 128,
 			dropRadius: 10, //px
 			perturbance: 0.04,
@@ -155,33 +152,30 @@ $(document).ready(function() {
 		});
 	}
 	catch (e) {
-		$('.error').show().text(e);
+		console.error(e);
 	}
 
-	$('.js-ripples-disable').on('click', function() {
-		$('body, main').ripples('destroy');
-		$(this).hide();
-	});
+	var pointerPosition = {x: null, y: null};
 
-	$('.js-ripples-play').on('click', function() {
-		$('body, main').ripples('play');
-	});
-
-	$('.js-ripples-pause').on('click', function() {
-		$('body, main').ripples('pause');
+	window.addEventListener("mousemove", event => {
+		var rect = document.querySelector("main").getBoundingClientRect();
+		pointerPosition.x = event.clientX - rect.left;
+		pointerPosition.y = event.clientY - rect.top;
 	});
 
 	// Automatic drops
-	setInterval(function() {
-		var $el = $('main');
-		var x = Math.random() * $el.outerWidth();
-		var y = Math.random() * $el.outerHeight();
+	var animate = () => {
+		var rect = document.querySelector("main").getBoundingClientRect();
+		var x = pointerPosition.x || Math.random() * rect.width;
+		var y = pointerPosition.y || Math.random() *rect.height;
 		var dropRadius = 20;
 		var strength = 0.04 + Math.random() * 0.04;
+		window.mainRipples.drop(x, y, dropRadius, strength);
 
-		$el.ripples('drop', x, y, dropRadius, strength);
-	}, 400);
-});
+		requestAnimationFrame(animate);
+	};
+
+	animate();
 </script>
 </body>
 </html>

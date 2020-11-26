@@ -1,46 +1,41 @@
 {
-  "name": "jquery.ripples",
-  "version": "0.6.3",
-  "description": "Add a water ripple effect to background images using WebGL.",
-  "keywords": [
-    "jquery",
-    "jquery-plugin",
-    "water",
-    "ripples",
-    "WebGL",
-    "background",
-    "effect"
-  ],
-  "scripts": {
-    "build": "rollup -c build/rollup.config.js",
-    "build-min": "rollup -c build/rollup.config-min.js",
-    "version": "npm run build && npm run build-min && git add -A dist",
-    "postversion": "git push && git push --tags"
-  },
-  "homepage": "https://sirxemic.github.io/jquery.ripples/",
-  "license": "MIT",
-  "author": {
-    "name": "Pim Schreurs",
-    "url": "https://sirxemic.com/",
-    "email": "pimschreurs@gmail.com"
-  },
-  "main": "dist/jquery.ripples.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/sirxemic/jquery.ripples.git"
-  },
-  "peerDependencies": {
-    "jquery": ">=1.7.0"
-  },
-  "devDependencies": {
-    "rollup": "^0.45.1",
-    "rollup-plugin-license": "^0.6.0",
-    "rollup-plugin-uglify": "^2.0.1",
-    "jquery": ">=1.7.0"
-  },
-  "dependencies": {},
-  "files": [
-    "dist",
-    "README.md"
-  ]
+    "name": "webgl-ripplies.js",
+    "version": "0.0.1",
+    "description": "Add a water ripple effect to background images using WebGL.",
+    "keywords": [
+        "webgl",
+        "js",
+        "water",
+        "ripples",
+        "WebGL",
+        "background",
+        "effect"
+    ],
+    "scripts": {
+        "build": "rollup -c build/rollup.config.js",
+        "version": "npm run build && npm run build && git add -A dist",
+        "postversion": "git push && git push --tags"
+    },
+    "homepage": "https://github.com/mintymatt/webgl-ripples.js",
+    "license": "MIT",
+    "author": {
+        "name": "Pim Schreurs",
+        "url": "https://sirxemic.com/",
+        "email": "pimschreurs@gmail.com"
+    },
+    "main": "dist/webgl-ripples.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/mintymatt/webgl-ripples.js.git"
+    },
+    "devDependencies": {
+        "rollup": "^0.45.1",
+        "rollup-plugin-license": "^0.6.0",
+        "rollup-plugin-uglify": "^2.0.1"
+    },
+    "dependencies": {},
+    "files": [
+        "dist",
+        "README.md"
+    ]
 }
